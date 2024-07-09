@@ -1,5 +1,6 @@
 import express from 'express'
 import dotenv from 'dotenv'
+import workoutRoutes from './routes/workouts.js'
 
 // Load env variables
 dotenv.config();
@@ -8,15 +9,16 @@ dotenv.config();
 const app = express();
 
 // Middleware (log request when comming in)
+app.use(express.json());
+
 app.use((res, req, next) => {
   console.log(req.path, req.method);
   next();
 })
 
 // Routes
-app.get("/", (req, res) => {
-  res.json({ msg: "Welcome to the app" });
-})
+app.use('/api/workouts', workoutRoutes);
+
 
 
 // Listen to Port  
