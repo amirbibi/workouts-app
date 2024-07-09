@@ -1,6 +1,7 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import workoutRoutes from './routes/workouts.js'
+import mongoose from 'mongoose';
 
 // Load env variables
 dotenv.config();
@@ -19,9 +20,14 @@ app.use((res, req, next) => {
 // Routes
 app.use('/api/workouts', workoutRoutes);
 
-
-
-// Listen to Port  
-app.listen(process.env.PORT, () => {
-  console.log("Listening on port 4000.");
-})
+// Connect to db
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => {
+    // Listen to Port  
+    app.listen(process.env.PORT, () => {
+      console.log("Listening on port 4000.");
+    })
+  })
+  .catch((error) => {
+    console.error(error);
+  })
