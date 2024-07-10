@@ -54,7 +54,7 @@ const deleteWorkout = async (req, res) => {
   }
 
   try {
-    const workout = await Workout.findByIdAndDelete({ _id: id });
+    const workout = await Workout.findByIdAndDelete(id);
 
     if (!workout) {
       return res.status(404).json({ error: `Workout with ID ${id} not found` });
@@ -75,7 +75,7 @@ const updateWorkout = async (req, res) => {
   }
 
   try {
-    const workout = await Workout.findByIdAndUpdate({ _id: id }, {
+    const workout = await Workout.findByIdAndUpdate(id, {
       ...req.body
     });
 
