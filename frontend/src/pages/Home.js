@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import WorkoutDetails from '../components/WorkoutDetails';
+import WorkoutForm from '../components/WorkoutForm';
 
 const API_URL = 'http://localhost:4000/api/workouts/';
 
@@ -9,10 +10,10 @@ const Home = () => {
   useEffect(() => {
     const fetchWorkouts = async () => {
       const response = await fetch(API_URL);
-      const json = await response.json();
+      const responseJson = await response.json();
 
       if (response.ok) {
-        setWorkouts(json);
+        setWorkouts(responseJson);
       }
     }
 
@@ -26,6 +27,7 @@ const Home = () => {
           <WorkoutDetails key={workout._id} workout={workout} />
         ))}
       </div>
+      <WorkoutForm />
 
     </div>
   );

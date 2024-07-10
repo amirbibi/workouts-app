@@ -43,7 +43,6 @@ const createWorkout = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
-  res.json({ msg: "POST single" });
 }
 
 // DELETE a workout
@@ -89,6 +88,5 @@ const updateWorkout = async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 }
-
 
 export { createWorkout, getAllWorkouts, getWorkout, deleteWorkout, updateWorkout };
