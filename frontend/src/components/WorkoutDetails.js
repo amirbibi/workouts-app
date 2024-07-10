@@ -1,4 +1,5 @@
 import { useWorkoutsContext } from "../hooks/useWorkoutsContext";
+import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
 const API_URL = 'http://localhost:4000/api/workouts/';
 
@@ -21,9 +22,10 @@ const WorkoutDetails = ({ workout }) => {
       <h4>{workout.title}</h4>
       <p><strong>Load (kg): </strong>{workout.load}</p>
       <p><strong>Reps: </strong>{workout.reps}</p>
-      <p>{workout.createdAt}</p>
-      <p>{workout.updatedAt}</p>
-      <span onClick={handleDelete}>Delete</span>
+      <p>{formatDistanceToNow(new Date(workout.createdAt), { addSuffix: true })}</p>
+      <span onClick={handleDelete} class="material-symbols-outlined">
+        delete
+      </span>
     </div>
   )
 }
