@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useWorkoutsContext } from '../hooks/useWorkoutsContext';
 
 const API_URL = 'http://localhost:4000/api/workouts/';
 
 const WorkoutForm = () => {
   // TODO: Change to formData
   // const [formData, setFormData] = useState({ title: '', load: '', reps: '' });
-
+  const { dispatch } = useWorkoutsContext();
   const [title, setTitle] = useState('');
   const [load, setLoad] = useState('');
   const [reps, setReps] = useState('');
@@ -37,7 +38,7 @@ const WorkoutForm = () => {
       setReps('');
 
       setError(null);
-      console.log("New workout added", responseJson)
+      dispatch({ type: 'ADD_WORKOUT', payload: responseJson });
     }
   }
 
