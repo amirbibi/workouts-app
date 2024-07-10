@@ -2,6 +2,7 @@ import express from 'express'
 import dotenv from 'dotenv'
 import workoutRoutes from './routes/workouts.js'
 import mongoose from 'mongoose';
+import cors from 'cors';
 
 // Load env variables
 dotenv.config();
@@ -10,9 +11,10 @@ dotenv.config();
 const app = express();
 
 // Middleware (log request when comming in)
+app.use(cors());
 app.use(express.json());
 
-app.use((res, req, next) => {
+app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 })
