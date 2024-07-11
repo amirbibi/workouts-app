@@ -1,9 +1,11 @@
 import express from 'express'
 import dotenv from 'dotenv'
-import workoutRoutes from './routes/workouts.js'
-import userRoutes from './routes/users.js'
 import mongoose from 'mongoose';
 import cors from 'cors';
+
+// Routes import
+import workoutRoutes from './routes/workouts.js'
+import userRoutes from './routes/users.js'
 
 // Load env variables
 dotenv.config();

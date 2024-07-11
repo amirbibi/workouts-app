@@ -1,7 +1,7 @@
-import express from "express"
+import { Router } from "express"
 import { createWorkout, deleteWorkout, getAllWorkouts, getWorkout, updateWorkout } from "../controllers/workoutController.js"
 
-const router = express.Router();
+const router = Router();
 
 // GET all
 router.get("/", getAllWorkouts);

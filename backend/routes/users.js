@@ -1,9 +1,9 @@
-import express from "express"
+import { Router } from "express"
 
 // Controller functions
 import { loginUser, signupUser } from "../controllers/userController.js"
 
-const router = express.Router();
+const router = Router();
 
 // Login route
 router.post("/login", loginUser);
