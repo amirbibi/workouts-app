@@ -1,19 +1,21 @@
 import { useState } from 'react';
+import { useSignup } from '../hooks/useSignup';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+  const { signup, error, isLoading } = useSignup();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({ ...prevState, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData);
+    await signup(formData);
   }
 
   return (
@@ -34,7 +36,13 @@ const Signup = () => {
         onChange={handleChange}
       />
 
-      <button type='submit'>Signup</button>
+      <button
+        disabled={isLoading}
+        type='submit'
+      >
+        Signup
+      </button>
+      {error && <div className='error'>{error}</div>}
     </form>
   )
 }
