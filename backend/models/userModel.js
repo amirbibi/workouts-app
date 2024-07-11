@@ -43,5 +43,20 @@ userSchema.statics.signup = async function (email, password) {
   return user;
 }
 
+userSchema.statics.login = async function (email, password) {
+
+  if (!password || !email) {
+    throw new Error('Email and Password are required');
+  }
+
+  const user = await this.findOne({ email });
+
+  // if user not found or password is incorrect
+  if (!user || !(await bcrypt.compare(password, user.password))) {
+    throw new Error('Invalid credentials');
+  }
+
+  return user;
+}
 
 export default model('User', userSchema)
