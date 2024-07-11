@@ -17,5 +17,4 @@ router.delete("/:id", deleteWorkout);
 
 // UPDATE
 router.patch("/:id", updateWorkout);
-
 export default router;
