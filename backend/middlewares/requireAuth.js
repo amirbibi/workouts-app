@@ -12,9 +12,10 @@ const requireAuth = async (req, res, next) => {
 
   try {
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
-    
+
     // Ensures user exists in db
-    req.userId = await User.findById(_id).select('_id');
+    req.user = await User.findById(_id).select('_id');
+
     next();
   } catch (error) {
     console.error(error);
